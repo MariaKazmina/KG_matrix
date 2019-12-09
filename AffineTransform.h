@@ -103,4 +103,17 @@ Matrix<> Mappingo()
 }
 
 
+Matrix<> Idenity()
+{
+	double I[9] =
+	{
+		1, 0, 0,
+		0, 1, 0,
+		0, 0, 1
+	};
+	return Matrix<>(3, 3, I);
+
+}
+
+
 #endif AFFINE_TRANSFORM_H
