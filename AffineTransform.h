@@ -53,5 +53,54 @@ Matrix<> Rotation(double c, double s)
 
 }
 
+Matrix<> Scaling(double kx, double ky)
+{
+	double S[9]
+	{
+		kx, 0, 0,
+		0, ky, 0,
+		0, 0, 1
+
+	};
+	return Matrix<>(3, 3, S);
+
+}
+
+Matrix<> MappingX()
+{
+	double Mx[9] =
+	{
+		1, 0, 0,
+		0, -1, 0,
+		0, 0, 1
+	};
+	return Matrix<>(3, 3, Mx);
+
+}
+
+Matrix<> MappingY()
+{
+	double My[9] =
+	{
+		-1, 0, 0,
+		0, 1, 0,
+		0, 0, 1
+	};
+	return Matrix<>(3, 3, My);
+
+}
+
+Matrix<> Mappingo()
+{
+	double M0[9] =
+	{
+		-1, 0, 0,
+		0, -1, 0,
+		0, 0, 1
+	};
+	return Matrix<>(3, 3, M0);
+
+}
+
 
 #endif AFFINE_TRANSFORM_H
