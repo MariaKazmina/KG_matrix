@@ -38,8 +38,8 @@ template <typename Cell>
 Matrix<Cell>::Matrix(const Matrix<Cell>& M)
 {
 	AllocateCells(M.column, M.row);
-	for (int i=0; i<row; i++)
-	for (int j=0; j<column; j++)
+	for (int i=0; i<column; i++)
+	for (int j=0; j<row; j++)
 		cells[i][j] = M.cells[i][j];
 }
 
@@ -61,10 +61,9 @@ Matrix<Cell>::Matrix(int Column, int Row, Cell* list)
 	for (int i = 0; i < column; i++)
 	{
 		for (int j = 0; j < row; j++) {
-			//cout << "i: " << i << " ";
-			//cout << "j: " << j << " ";
+			
 			cells[i][j] = list[k];
-			//cout << cells[i][j] << endl;
+			
 			k++;
 		}
 	}
@@ -100,10 +99,10 @@ Matrix<Cell> Matrix<Cell>::operator+(const Matrix& M)
 		for (int i = 0; i < column; i++)
 			for (int j = 0; j < row; j++)
 			{
-				cout << "i: " << i << " ";
-				cout << "j: " << j << " ";
+				//cout << "i: " << i << " ";
+				//cout << "j: " << j << " ";
 				res.cells[i][j] += M.cells[i][j];
-				cout << " " << res.cells[i][j] << endl;
+				//cout << " " << res.cells[i][j] << endl;
 			}
 	}
 	return res;
@@ -126,8 +125,19 @@ Matrix<Cell> Matrix<Cell>::operator-(const Matrix& M)
 template <typename Cell>
 Matrix<Cell> Matrix<Cell>::operator*(const Matrix& M)
 {
-	/* ... */
-	return Matrix();
+	Matrix<> res(column,M.row);
+	if (M.column == row) {
+		for (int i = 0; i < M.row; i++)
+		{
+			for (int j = 0; j < column; j++)
+			{
+				for (int k = 0; k < M.column; k++)
+					res.cells[i][j] += cells[i][k] * M.cells[k][j];
+
+			}
+		}
+	}
+	return res;
 }
 
 template <typename Cell>
